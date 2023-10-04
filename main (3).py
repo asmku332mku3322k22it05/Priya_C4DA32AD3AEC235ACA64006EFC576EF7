@@ -1,49 +1,40 @@
-''' Implement a class called BankAccount that represents a bank account. The class should have private 
-attributes for account number, account holder name, and account balance. Include methods to
-deposit money , withdraw money, and display the account balance.Ensure that the account balance 
-cannot be accessed  directly from outside the class. Write a program to create an instance of the
-BankAccount class and test the deposit and withdrawal functionality.'''
+"""
+Implement a function called sort_students that takes a list 
+of students objects as input and sorts the list based on their CGPA(Cumulative Grade Point Average) in descending order.
+Each student object has the following attributes : name (string),roll_number (string), and cgpa(float).
+Test the function with different input lists of students.
+"""
+
+class student :
+
+  def __init__(self , name, roll_number, cgpa):
+    self.name = name
+    self.roll_number = roll_number
+    self.cgpa = cgpa
 
 
-class BankAccount:
-
-  def __init__(self,account_number, account_holder_name, initial_balance=0.0):
-   self.__account_number = account_number
-   self.__account_holder_name = account_holder_name
-   self.__account_balance = initial_balance
-
-  def deposit(self, amount):
-    if amount > 0 :
-       self.__account_balance += amount
-       # self.__account_balance =  self.__account_Balance+amount
-       print("Deposited ₹{}. New balance: ₹{}".format(amount,
-                                              self.__account_balance))
-    else:
-        print("Invalid deposit amount.")
-  
-  def withdraw(self, amount):
-    if amount > 0 and amount <= self.__account_balance:
-      self .__account_balance -= amount
-      #self.__account_balance =  self.__account_Balance - amount
-      print("Withdraw ₹{}. New balance: ₹{}".format(amount,
-                                              self.__account_balance))  
-    else:
-      print(" Invalid withdrawal  amount or insufficient balance." )
-
-  def display_balance(self):
-      print("Account balance for {} (Account #{}): ₹{}" .format(
-                  self.__account_holder_name, self.__account_number,
-                  self.__account_balance))
+def sort_students(student_list):
+  # Sort the list of students in descending order of CGPA
+  sorted_students = sorted(student_list,
+                           key=lambda student:  student.cgpa,
+                           reverse=True)
+  # Syntax - lambda arg:exp'
+  return sorted_students
 
 
-# Create an instance of the BankAccount class
-account = BankAccount(account_number="12345",
-                      account_holder_name="Priya Dharshini",
-                      initial_balance=15000.0)
+# Example Usage:
+students = [
+  student("Hari","A123",7.8),
+  student("Swetha","A124",8.9),
+  student("Samuya","A125",9.1),
+  student("Muthu","A126",9.9),
+]
 
-# Test deposit and withdrawal functionality
-account.display_balance()
-account.deposit(5000.0)
-account.withdraw(2000.0)
-account.withdraw(30000.0)
-account.display_balance()
+sorted_students = sort_students(students)
+
+# print the sorted list of students
+for student in sorted_students:
+  print("Name: {}, RollNumber:{},CGPA:{}". format(student.name,
+                                                  student.roll_number,
+                                                  
+                                                  student.cgpa))
